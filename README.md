@@ -16,4 +16,4 @@ You may also see any lint errors in the console.
 
 ## Deployment
 
-This section has moved here: [https://survey-app-chi.vercel.app/](https://survey-app-chi.vercel.app/)
+DEPLOY: [https://survey-app-chi.vercel.app/](https://survey-app-chi.vercel.app/)
