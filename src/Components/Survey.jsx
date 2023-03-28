@@ -4,7 +4,7 @@ import firebase from "firebase/compat/app";
 import "firebase/compat/database";
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { pink } from '@mui/material/colors';
-import { Button, Checkbox, FormControlLabel, Grid, CssBaseline, Box, Typography, TextField, FormHelperText, FormControl, Select, MenuItem, Avatar } from "@mui/material";
+import { Button, Checkbox, FormControlLabel, Grid, Box, Typography, TextField, FormHelperText, FormControl, Select, MenuItem, Avatar } from "@mui/material";
 import TableChartIcon from '@mui/icons-material/TableChart';
 
 const theme = createTheme({
@@ -12,12 +12,7 @@ const theme = createTheme({
     primary: {
       main: pink[900],
     },
-  },
-  typography: {
-    subtitle: {
-      fontSize: '0.8rem',
-    },
-  },
+  }
 });
 
 function Copyright(props) {
@@ -138,39 +133,30 @@ const Survey = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <Grid container component="main" sx={{ height: '100vh' }}>
-      <CssBaseline />
-        <Grid
-          item
-          xs={false}
-          sm={4}
-          md={7}
-          sx={{
-            backgroundImage: 'url(https://source.unsplash.com/random)',
-            backgroundRepeat: 'no-repeat',
-            backgroundColor: (t) =>
-              t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-          }}
-        />
-        <Grid item xs={12} sm={8} md={5} elevation={6} square backgroundColor={'#fbf2f0'}>
+      <Grid container component="main" sx={{ height: 'full' }} backgroundColor={'#955460'}>
+        <Grid xs display="flex" justifyContent="center" alignItems="center">
+        </Grid>
+        <Grid item xs={6} sm={8} md={6} elevation={6} backgroundColor={'#fbf2f0'} variant="rounded">
         <Box
             sx={{
               my: 8,
               mx: 4,
               display: 'flex',
               flexDirection: 'column',
-              alignItems: 'center',
+              alignItems: 'flex-start',
             }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'primary.main' }}>
+          <Avatar sx={{ m: 1, bgcolor: 'primary.main', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
               <TableChartIcon />
           </Avatar>
         <Typography marginTop={'1.5rem'} component="h1" variant="h5">
           FILL YOUR INFORMATION
         </Typography>
-        <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }} >
+        <Typography paragraph={true} align="left" marginTop={"1.5rem"}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod neque cupiditate deserunt quia. Enim saepe repudiandae commodi! Libero molestiae facilis consequuntur commodi eius nulla ex, laudantium molestias ut.</Typography>
+        <Typography paragraph={true} align="left">Lorem ipsum dolor sit amet consectetur adipisicing elit.</Typography>
+        <Typography paragraph={true} align="left">Lorem ipsum dolor sit amet consectetur adipisicing elit.</Typography>
+        <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1, display: 'flex',
+              flexDirection: 'column', alignItems: 'flex-start' }} >
           {jsonData.items.map((item, index) => {
           switch (item.type) {
             case "text":
@@ -178,6 +164,7 @@ const Survey = () => {
             case "date":
               return (
               <div key={index}>
+                <Box marginTop={'3rem'}>
                 <TextField
                   type={item.type}
                   id={item.name}
@@ -190,21 +177,13 @@ const Survey = () => {
                   color="primary"
                   focused
                 />
-                {/* <label htmlFor={item.name}>{item.label}</label>
-                <input
-                  type={item.type}
-                  id={item.name}
-                  name={item.name}
-                  required={item.required}
-                  value={formState[item.name] || ""}
-                  onChange={handleChange}
-                /> */}
+                </Box>
               </div>
             );
           case "select":
             return (
               <div key={index}>
-                <Box sx={{ minWidth: 120 }} >
+                <Box sx={{ minWidth: 120 }} marginTop={'3rem'}>
                 <FormControl variant="standard" color="primary" focused>
                 <Select
                   value={formState[item.name] || ""}
@@ -225,26 +204,12 @@ const Survey = () => {
                 <FormHelperText>{item.label}</FormHelperText>
                 </FormControl>
                 </Box>
-                {/* <label htmlFor={item.name}>{item.label}</label>
-                <select
-                  id={item.name}
-                  name={item.name}
-                  required={item.required}
-                  value={formState[item.name] || ""}
-                  onChange={handleChange}
-                >
-                  <option value="">--Seleccione una opción--</option>
-                  {item.options.map((option, index) => (
-                    <option key={index} value={option.value}>
-                      {option.label}
-                    </option>
-                  ))}
-                </select> */}
               </div>
             );
           case "checkbox":
             return (
               <div key={index}>
+                <Box marginTop={'3rem'}>
                 <FormControlLabel
                   control={<Checkbox 
                     id={item.name}
@@ -261,28 +226,13 @@ const Survey = () => {
                   />}
                   label={item.label}
                 />
-                {/* <label htmlFor={item.name}>
-                  <input
-                    type="checkbox"
-                    id={item.name}
-                    name={item.name}
-                    required={item.required}
-                    checked={formState[item.name]}
-                    onChange={(e) =>
-                      setFormState((prevState) => ({
-                        ...prevState,
-                        [item.name]: e.target.checked,
-                      }))
-                    }
-                  />
-                  {item.label}
-                </label> */}
+                </Box>
               </div>
             );
           case "submit":
             return (
-              <Box marginTop={'2rem'}>
-              <Button variant="contained" color="primary" key={index} type="submit" >
+              <Box marginTop={'1rem'}>
+              <Button variant="contained" color="primary" key={index} type="submit">
                 {item.label}
               </Button>
               </Box>
@@ -294,6 +244,8 @@ const Survey = () => {
       </Box>
       <Copyright sx={{ mt: 2 }}/>
         </Box>
+      </Grid>
+      <Grid xs display="flex" justifyContent="center" alignItems="center">
       </Grid>
       </Grid>
     </ThemeProvider>
